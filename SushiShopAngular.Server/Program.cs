@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using SushiShopAngular.Server.Data;
+using System.Text.Json.Serialization;
 
 namespace SushiShopAngular.Server
 {
@@ -6,10 +9,25 @@ namespace SushiShopAngular.Server
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionStringSushiShopDefaultDatabaseMSSQL = builder.Configuration.GetConnectionString("DefaultSushiShopDatabaseMSSQL");
 
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    }
+                );
+            builder.Services.AddDbContext<SushiShopContext>(
+                    options =>
+                    {
+                        options.UseSqlServer(connectionStringSushiShopDefaultDatabaseMSSQL)
+                        .LogTo(Console.WriteLine, LogLevel.Information);
+                        options.EnableSensitiveDataLogging();
+                    }
+                );
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
