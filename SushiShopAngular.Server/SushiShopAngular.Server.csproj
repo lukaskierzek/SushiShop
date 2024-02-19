@@ -22,4 +22,12 @@
     </ProjectReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Kierzu\source\repos\SushiShopAngular\SushiShopAngular.Server\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Kierzu\source\repos\SushiShopAngular\SushiShopAngular.Server\.editorconfig" />
+  </ItemGroup>
+
 </Project>
