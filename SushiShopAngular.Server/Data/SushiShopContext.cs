@@ -53,6 +53,46 @@ namespace SushiShopAngular.Server.Data
                 .WithMany(ingredient => ingredient.Sushis);
             #endregion
 
+            #region EntitySUshiDescription
+            modelBuilder.Entity<SushiDescription>()
+                .Property(sh => sh.Description)
+                .HasMaxLength(500);
+
+            modelBuilder.Entity<SushiDescription>()
+                .Property(sh => sh.IsDeleted)
+                .HasMaxLength(1);
+            #endregion
+
+            #region EntityMainCategory
+            modelBuilder.Entity<MainCategory>()
+                .Property(mc => mc.Name)
+                .HasMaxLength(255);
+
+            modelBuilder.Entity<MainCategory>()
+                .Property(mc => mc.IsDeleted)
+                .HasMaxLength(1);
+            #endregion
+
+            #region EntitySubCategory
+            modelBuilder.Entity<SubCategory>()
+                .Property(sb => sb.Name)
+                .HasMaxLength(255);
+
+            modelBuilder.Entity<SubCategory>()
+                .Property(sb => sb.IsDeleted)
+                .HasMaxLength(1);
+            #endregion
+
+            #region EntityIngredient
+            modelBuilder.Entity<Ingredient>()
+                .Property(i => i.Name)
+                .HasMaxLength(255);
+
+            modelBuilder.Entity<Ingredient>()
+                .Property(i => i.IsDeleted)
+                .HasMaxLength(1);
+            #endregion
+
             base.OnModelCreating(modelBuilder);
         }
     }
