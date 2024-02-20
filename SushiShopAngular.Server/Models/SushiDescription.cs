@@ -7,7 +7,7 @@
         public int SushiId { get; set; }
         public virtual Sushi Sushi { get; set; } = null!;
         public int IsDeleted { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime LastModified { get; set; }
+        public DateTime Created { get; set; } = DateTime.UtcNow;
+        public DateTime LastModified { get; set; } = DateTime.UtcNow;
     }
 }
