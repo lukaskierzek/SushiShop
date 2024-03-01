@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface MainCategory {
+  name: string,
 }
 
 @Component({
@@ -14,7 +11,7 @@ interface WeatherForecast {
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
+  public mainCategory: MainCategory[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -23,12 +20,10 @@ export class AppComponent implements OnInit {
   }
 
   getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
+    this.http.get('https://localhost:7103/api/sushiShop/allMainCategory').subscribe(
+      (data: any) => {
+        this.mainCategory = data;
+        console.log(this.mainCategory);
       }
     );
   }
