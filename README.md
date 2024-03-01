@@ -1,5 +1,5 @@
-# Kanji Learn Web Page
-Web page to learn Kanji in Polish.
+# Suhi Shop Web Page
+Web page where you can buy sushi.
 
 ## Table of contents
 * [Technologies Used](#technologies-used)
@@ -18,16 +18,12 @@ Web page to learn Kanji in Polish.
 - MS SQL 2019
 
 ## Features
-- Each Kanji has a kun'yomi and on'yomi reading.
-- Each Kanji also has expamlpe senteces with the particular Kanji.
-- N5 Kanji list.
+- You can browse sushi by categories.
+- You can browse sushi by ingredients.
+- Each sushi has a subpage with a detailed description.
 
 ## Screenshots
->Main page
->![main_page](Images/main_page.png)
-
->Database diagram
->![kanji_database](Images/KanjiDatabase.png)
+_In Progress_
 
 ## Project Status
 The project is in progress.
