@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SushiShopAngular.Server.Enums;
 using SushiShopAngular.Server.Models;
+using System.Net.WebSockets;
 
 namespace SushiShopAngular.Server.Data
 {
@@ -32,6 +33,10 @@ namespace SushiShopAngular.Server.Data
             modelBuilder.Entity<Sushi>()
                 .Property(sushi => sushi.IsDeleted)
                 .HasMaxLength(1);
+
+            modelBuilder.Entity<Sushi>()
+                .Property(sushi => sushi.ImageUrl)
+                .HasMaxLength(512);
 
             modelBuilder.Entity<Sushi>()
                 .HasOne(sushi => sushi.Description)
@@ -102,10 +107,12 @@ namespace SushiShopAngular.Server.Data
             #endregion
 
             #region SeedDataSushi
-            var sushi1 = new Sushi { Id = 1, Name = "Sushi1", ActualPrice = 10, OldPrice = 10, MainCategoryId = 1, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
-            var sushi2 = new Sushi { Id = 2, Name = "Sushi2", ActualPrice = 10, OldPrice = 9, MainCategoryId = 2, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
-            var sushi3 = new Sushi { Id = 3, Name = "Sushi3", ActualPrice = 10, OldPrice = 20, MainCategoryId = 3, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
-            var sushi4 = new Sushi { Id = 4, Name = "Sushi4", ActualPrice = 10, OldPrice = 20, MainCategoryId = 3, IsDeleted = (int)IsDeleted.Yes, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
+            var sushiImageUrl = "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f";
+            
+            var sushi1 = new Sushi { Id = 1, Name = "Sushi1", ActualPrice = 10, OldPrice = 10, MainCategoryId = 1, ImageUrl = sushiImageUrl, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
+            var sushi2 = new Sushi { Id = 2, Name = "Sushi2", ActualPrice = 10, OldPrice = 9, MainCategoryId = 2, ImageUrl = sushiImageUrl, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
+            var sushi3 = new Sushi { Id = 3, Name = "Sushi3", ActualPrice = 10, OldPrice = 20, MainCategoryId = 3, ImageUrl = sushiImageUrl, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
+            var sushi4 = new Sushi { Id = 4, Name = "Sushi4", ActualPrice = 10, OldPrice = 20, MainCategoryId = 3, ImageUrl = sushiImageUrl, IsDeleted = (int)IsDeleted.Yes, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
 
             var sushi = new List<Sushi> { sushi1, sushi2, sushi3, sushi4 };
             modelBuilder.Entity<Sushi>().HasData(sushi);

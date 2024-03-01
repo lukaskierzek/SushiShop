@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SushiShopAngular.Server.Data;
 
@@ -11,9 +12,11 @@ using SushiShopAngular.Server.Data;
 namespace SushiShopAngular.Server.Migrations
 {
     [DbContext(typeof(SushiShopContext))]
-    partial class SushiShopContextModelSnapshot : ModelSnapshot
+    [Migration("20240301103719_SushImageUrl")]
+    partial class SushImageUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

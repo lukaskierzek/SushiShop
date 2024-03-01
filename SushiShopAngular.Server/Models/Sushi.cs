@@ -13,6 +13,7 @@
         public List<SushiIngredient> sushiIngredients { get; } = [];
         public List<SushiSubCategory> sushiSubCategories { get; } = [];
         public List<SubCategory> SubCategories { get; } = [];
+        public string ImageUrl { get; set; } = null!;
         public int IsDeleted { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public DateTime LastModified { get; set; } = DateTime.UtcNow;
