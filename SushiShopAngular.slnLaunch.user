@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Name": "SushiShopAngular.Server\\SushiShopAngular.Server.csproj",
+        "Action": "Start",
+        "DebugTarget": ""
+      },
+      {
+        "Name": "sushishopangular.client\\sushishopangular.client.esproj",
+        "Action": "Start",
+        "DebugTarget": ""
+      }
+    ]
+  }
+]

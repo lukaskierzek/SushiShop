@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SushiShopAngular.Server.Data;
+using SushiShopAngular.Server.Services;
 using System.Text.Json.Serialization;
 
 namespace SushiShopAngular.Server
@@ -15,10 +16,10 @@ namespace SushiShopAngular.Server
 
             builder.Services.AddControllers();
             builder.Services.AddControllers().AddJsonOptions(options =>
-                    {
-                        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-                    }
-                );
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            }
+            );
             builder.Services.AddDbContext<SushiShopContext>(
                     options =>
                     {
@@ -32,6 +33,12 @@ namespace SushiShopAngular.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+            builder.Services.AddScoped<ISushiService, SushiService>();
+
+
+
             var app = builder.Build();
 
             app.UseDefaultFiles();
@@ -44,6 +51,11 @@ namespace SushiShopAngular.Server
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(options =>
+                options.WithOrigins("https://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

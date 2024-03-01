@@ -1,6 +1,6 @@
 @SushiShopAngular.Server_HostAddress = http://localhost:5038
 
-GET {{SushiShopAngular.Server_HostAddress}}/weatherforecast/
+GET {{SushiShopAngular.Server_HostAddress}}/api/sushiShop/allMainCategory
 Accept: application/json
 
 ###

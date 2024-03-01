@@ -9,8 +9,10 @@
         public virtual SushiDescription? Description { get; set; }
         public int MainCategoryId { get; set; }
         public virtual MainCategory MainCategory { get; set; } = null!;
-        public List<SubCategory> SubCategories { get; } = [];
         public List<Ingredient> Ingredients { get; } = [];
+        public List<SushiIngredient> sushiIngredients { get; } = [];
+        public List<SushiSubCategory> sushiSubCategories { get; } = [];
+        public List<SubCategory> SubCategories { get; } = [];
         public int IsDeleted { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public DateTime LastModified { get; set; } = DateTime.UtcNow;
