@@ -11,7 +11,7 @@ Web page where you can buy sushi.
 
 ## Technologies Used
 - .NET 8
-- Entity Framework 8
+- Entity Framework Core 8
 - Vite 4
 - React 18
 - Visual Studio 2022
