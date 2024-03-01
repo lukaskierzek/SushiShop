@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SushiShopAngular.Server.Enums;
 using SushiShopAngular.Server.Models;
-using System.Net.WebSockets;
 
 namespace SushiShopAngular.Server.Data
 {
@@ -108,7 +107,7 @@ namespace SushiShopAngular.Server.Data
 
             #region SeedDataSushi
             var sushiImageUrl = "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f";
-            
+
             var sushi1 = new Sushi { Id = 1, Name = "Sushi1", ActualPrice = 10, OldPrice = 10, MainCategoryId = 1, ImageUrl = sushiImageUrl, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
             var sushi2 = new Sushi { Id = 2, Name = "Sushi2", ActualPrice = 10, OldPrice = 9, MainCategoryId = 2, ImageUrl = sushiImageUrl, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
             var sushi3 = new Sushi { Id = 3, Name = "Sushi3", ActualPrice = 10, OldPrice = 20, MainCategoryId = 3, ImageUrl = sushiImageUrl, IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
