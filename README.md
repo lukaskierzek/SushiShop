@@ -23,7 +23,8 @@ Web page where you can buy sushi.
 - Each sushi has a subpage with a detailed description.
 
 ## Screenshots
-_In Progress_
+>**Database diagram**
+>![SushiShop_database](Images/Database_diagram.png)
 
 ## Project Status
 The project is in progress.
