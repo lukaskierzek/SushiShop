@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 interface MainCategory {
+  id: number,
   name: string,
 }
 
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   getForecasts() {
-    this.http.get('https://localhost:7103/api/sushiShop/allMainCategory').subscribe(
+    this.http.get('https://localhost:7103/sushi-shop/all-main-category').subscribe(
       (data: any) => {
         this.mainCategory = data;
         console.log(this.mainCategory);

@@ -1,28 +1,40 @@
-<h1 id="tableLabel"><iframe *ngIf="mainCategory.length >= 1" src="https://www.youtube.com/embed/yvTMt_yY0T8?autoplay=1" width="600" height="400" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></h1>
+<h1 id="tableLabel">
+  @if (mainCategory.length >= 1) {
+    <iframe src="https://www.youtube.com/embed/yvTMt_yY0T8?autoplay=1"
+            width="600"
+            height="400"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+  }
+</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!mainCategory"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+@if (!mainCategory){
+  <em>Loading... Please refresh once the ASP.NET backend has started. See <a
+  href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em>
+}
 
-<table *ngIf="mainCategory">
 
+@if (mainCategory) {
+  <table>
     <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
+    <tr>
+      <th>Date</th>
+      <th>Temp. (C)</th>
+      <th>Temp. (F)</th>
+      <th>Summary</th>
+    </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let forecast of mainCategory">
-            <td>{{ forecast.name }}</td>
+      @for (category of mainCategory; track category.id) {
+        <tr>
+          <td>{{ category.name }}</td>
         </tr>
+      } @empty {
+        <p>No content!</p>
+      }
     </tbody>
-</table>
-
-<div *ngFor="let mc of mainCategory">
-
-    <p>{{mc.name}}</p>
-</div>
-
+  </table>
+}
