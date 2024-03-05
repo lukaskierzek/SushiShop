@@ -17,10 +17,10 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getForecasts();
+    this.getMainCategories();
   }
 
-  getForecasts() {
+  getMainCategories() {
     this.http.get('https://localhost:7103/sushi-shop/all-main-category').subscribe(
       (data: any) => {
         this.mainCategory = data;
