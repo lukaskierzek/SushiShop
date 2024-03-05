@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SushiShopAngular.Server.Data;
 using SushiShopAngular.Server.Enums;
+using SushiShopAngular.Server.ExtensionMethods;
 using SushiShopAngular.Server.Models;
 using SushiShopAngular.Server.Models.ModelsDTO;
-using SushiShopAngular.Server.Services;
+using SushiShopAngular.Server.Services.Interfaces;
 
 namespace SushiShopAngular.Server.Controllers
 {
@@ -35,9 +36,29 @@ namespace SushiShopAngular.Server.Controllers
                 .Include(sushi => sushi.Description)
                 .ToListAsync();
 
-            var allSushisDTO = _mapper.Map<List<SushiDTO>>(allSushis);
+            var allSushisDTO = _sushiService.GetAllSushiDTO(allSushis);
 
             return Ok(allSushisDTO);
+        }
+
+        [HttpGet(RouteSushiShop.SushiById)]
+        public async Task<ActionResult<Sushi>> GetSushiById([FromRoute] int id)
+        {
+            var sushiById = await _context.Sushis
+                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
+                .Include(sushi => sushi.Ingredients)
+                .Include(sushi => sushi.SubCategories)
+                .Include(sushi => sushi.MainCategory)
+                .Include(sushi => sushi.Description)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (sushiById.IsNull()) return NotFound();
+
+            var sushiByIdDTO = _sushiService.GetSushiByIdDTO(sushiById);
+
+            if (sushiByIdDTO.IsNull()) return NotFound();
+
+            return Ok(sushiByIdDTO);
         }
 
         [HttpGet]
@@ -65,7 +86,7 @@ namespace SushiShopAngular.Server.Controllers
                 .Include(s => s.MainCategory)
                 .Include(s => s.Description)
                 .Include(s => s.SubCategories)
-                .Include(s => s.sushiSubCategories)
+                //.Include(s => s.sushiSubCategories)
                 .ToListAsync();
 
             var allSushisDTO = _mapper.Map<List<SushiDTO>>(allSushis);
@@ -78,8 +99,7 @@ namespace SushiShopAngular.Server.Controllers
         public async Task<ActionResult<IEnumerable<Sushi>>> GetAllSushiRaw()
         {
             var allSushis = await _context.Sushis
-                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
-                .Include(s => s.sushiIngredients)
+                .Include(s=>s.sushiIngredients)
                 .ToListAsync();
 
 

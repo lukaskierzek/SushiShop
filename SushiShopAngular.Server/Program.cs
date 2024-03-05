@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SushiShopAngular.Server.Data;
-using SushiShopAngular.Server.Services;
+using SushiShopAngular.Server.Services.Classes;
+using SushiShopAngular.Server.Services.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace SushiShopAngular.Server

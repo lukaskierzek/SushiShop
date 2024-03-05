@@ -2,6 +2,7 @@
 {
     public record SushiDTO
     {
+        public required int Id { get; init; }
         public required string Name { get; init; }
         public required decimal ActualPrice { get; init; }
         public required decimal OldPrice { get; init; }
