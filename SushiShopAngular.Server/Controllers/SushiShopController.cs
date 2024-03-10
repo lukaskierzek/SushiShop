@@ -5,7 +5,7 @@ using SushiShopAngular.Server.Data;
 using SushiShopAngular.Server.Enums;
 using SushiShopAngular.Server.ExtensionMethods;
 using SushiShopAngular.Server.Models;
-using SushiShopAngular.Server.Models.ModelsDTO;
+using SushiShopAngular.Server.Models.ModelsDTO.Sushi;
 using SushiShopAngular.Server.Services.Interfaces;
 
 namespace SushiShopAngular.Server.Controllers
@@ -24,8 +24,8 @@ namespace SushiShopAngular.Server.Controllers
             _sushiService = sushiService;
         }
 
-        [HttpGet]
-        [Route(RouteSushiShop.AllSushi)]
+        #region Sushi
+        [HttpGet(RouteSushiShop.AllSushi)]
         public async Task<ActionResult<IEnumerable<Sushi>>> GetAllSushi()
         {
             var allSushis = await _context.Sushis
@@ -46,13 +46,20 @@ namespace SushiShopAngular.Server.Controllers
         {
             var sushiById = await _context.Sushis
                 .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (sushiById.IsNull())
+                return NotFound();
+            else
+            {
+                sushiById = await _context.Sushis
+                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
                 .Include(sushi => sushi.Ingredients)
                 .Include(sushi => sushi.SubCategories)
                 .Include(sushi => sushi.MainCategory)
                 .Include(sushi => sushi.Description)
                 .FirstOrDefaultAsync(s => s.Id == id);
-
-            if (sushiById.IsNull()) return NotFound();
+            }
 
             var sushiByIdDTO = _sushiService.GetSushiByIdDTO(sushiById);
 
@@ -61,12 +68,42 @@ namespace SushiShopAngular.Server.Controllers
             return Ok(sushiByIdDTO);
         }
 
-        [HttpGet]
-        [Route(RouteSushiShop.AllMainCategory)]
+        [HttpPost(RouteSushiShop.AllSushi)]
+        public async Task<ActionResult<Sushi>> PostSushi([FromBody] CreateSushiDTO createSushiDTO)
+        {
+            var sushi = _sushiService.CreateSushiFromSushiDTO(createSushiDTO);
+             
+            await _context.Sushis.AddAsync(sushi);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetSushiById), new {id = sushi.Id}, sushi);
+        }
+        #endregion
+
+
+        #region Ungredient
+        [HttpGet(RouteSushiShop.AllIngredient)]
+        public async Task<ActionResult<IEnumerable<Ingredient>>> GetAllIngredient()
+        {
+            var allIngredients = await _context.Ingredients
+                .Where(i => i.IsDeleted == (int)IsDeleted.No)
+                .ToListAsync();
+
+            var allIngredientsDTO = _sushiService.GetAllIngredientDTO(allIngredients);
+
+            return Ok(allIngredientsDTO);
+        }
+        #endregion
+
+//======================================================================================================================================
+
+#if DEBUG
+
+        [HttpGet(RouteSushiShop.AllMainCategory)]
         public async Task<ActionResult<IEnumerable<MainCategory>>> GetAllMainCategory()
         {
             var allCategories = await _context.MainCategories
-                .Where(mc=>mc.IsDeleted == (int)IsDeleted.No)
+                .Where(mc => mc.IsDeleted == (int)IsDeleted.No)
                 .ToListAsync();
 
             var allMainCategoryDTO = _sushiService.GetAllMainCategoryDTO(allCategories);
@@ -75,8 +112,7 @@ namespace SushiShopAngular.Server.Controllers
         }
 
 
-        [HttpGet]
-        [Route("rawdto")]
+        [HttpGet("rawdto")]
         public async Task<ActionResult<IEnumerable<Sushi>>> GetAllSushiRawDto()
         {
             var allSushis = await _context.Sushis
@@ -99,12 +135,13 @@ namespace SushiShopAngular.Server.Controllers
         public async Task<ActionResult<IEnumerable<Sushi>>> GetAllSushiRaw()
         {
             var allSushis = await _context.Sushis
-                .Include(s=>s.sushiIngredients)
+                .Include(s => s.sushiIngredients)
                 .ToListAsync();
 
 
             return Ok(allSushis);
         }
+#endif
     }
 
 }

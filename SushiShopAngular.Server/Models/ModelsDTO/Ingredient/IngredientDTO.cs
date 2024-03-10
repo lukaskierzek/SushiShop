@@ -1,4 +1,4 @@
-﻿namespace SushiShopAngular.Server.Models.ModelsDTO
+﻿namespace SushiShopAngular.Server.Models.ModelsDTO.Ingredient
 {
     public record IngredientDTO
     {

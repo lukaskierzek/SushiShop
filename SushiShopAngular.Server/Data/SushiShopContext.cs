@@ -138,7 +138,7 @@ namespace SushiShopAngular.Server.Data
 
             #region SeedDataIngredient
             var ingredient1 = new Ingredient { Id = 1, Name = "Ingredient1", IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
-            var ingredient2 = new Ingredient { Id = 2, Name = "Ingredient3", IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
+            var ingredient2 = new Ingredient { Id = 2, Name = "Ingredient2", IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
             var ingredient3 = new Ingredient { Id = 3, Name = "Ingredient3", IsDeleted = (int)IsDeleted.No, Created = DateTime.UtcNow, LastModified = DateTime.UtcNow, };
 
             var ingredient = new List<Ingredient> { ingredient1, ingredient2, ingredient3 };

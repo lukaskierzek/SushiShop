@@ -3,8 +3,18 @@
     public static class RouteSushiShop
     {
         public const string MainRoute = "sushi-shop";
-        public const string AllSushi = "all-sushi";
+
+        #region Sushi
+        public const string AllSushi = "sushi";
         public const string SushiById = AllSushi + "/{id}";
-        public const string AllMainCategory = "all-main-category";
+        #endregion
+
+        #region Category
+        public const string AllMainCategory = "main-category";
+        #endregion
+
+        #region Ingredient
+        public const string AllIngredient = "ingredient";
+        #endregion
     }
 }

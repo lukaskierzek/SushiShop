@@ -1,4 +1,6 @@
-﻿namespace SushiShopAngular.Server.Models.ModelsDTO
+﻿using SushiShopAngular.Server.Models.ModelsDTO.Ingredient;
+
+namespace SushiShopAngular.Server.Models.ModelsDTO.Sushi
 {
     public record SushiDTO
     {
@@ -9,7 +11,7 @@
         public required string Description { get; init; }
         public required string MainCategory { get; init; }
         public required string ImageUrl { get; init; }
-        public required List<IngredientDTO> Ingrediets { get; init; }
+        public required List<IngredientDTO> ingredients { get; init; }
         public required List<SubCategoryDTO> SubCategories { get; init; }
     }
 }

@@ -1,6 +1,41 @@
-@SushiShopAngular.Server_HostAddress = http://localhost:5038
+@hostname=localhost
+@port=7103
+@SushiShopAngular.Server_HostAddress = https://{{hostname}}:{{port}}/sushi-shop
 
-GET {{SushiShopAngular.Server_HostAddress}}/api/sushiShop/allMainCategory
+GET {{SushiShopAngular.Server_HostAddress}}/sushi
+Accept: application/json
+
+###
+
+GET {{SushiShopAngular.Server_HostAddress}}/sushi/1
+Accept: application/json
+
+###
+
+POST {{SushiShopAngular.Server_HostAddress}}/sushi
+Accept: text/plain
+Content-Type: application/json
+
+{
+  "name": "SushiPOST",
+  "actualPrice": 69.69,
+  "oldPrice": 96.96,
+  "mainCategoryId": 1,
+  "description": "descriptionPOST",
+  "imageUrl": "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f",
+  "isDeleted": 0,
+  "created": "2024-03-08T20:13:43.678Z",
+  "lastModified": "2024-03-08T20:13:43.678Z"
+}
+
+###
+
+GET {{SushiShopAngular.Server_HostAddress}}/main-category
+Accept: application/json
+
+###
+
+GET {{SushiShopAngular.Server_HostAddress}}/ingredient
 Accept: application/json
 
 ###
