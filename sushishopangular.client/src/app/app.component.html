@@ -1,40 +1,52 @@
 <h1 id="tableLabel">
-  @if (mainCategory.length >= 1) {
+    @if (sushi.length >= 1) {
     <iframe src="https://www.youtube.com/embed/yvTMt_yY0T8?autoplay=1"
             width="600"
             height="400"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
     </iframe>
-  }
+    }
 </h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (!mainCategory){
-  <em>Loading... Please refresh once the ASP.NET backend has started. See <a
-  href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em>
+@if (!sushi){
+<em>
+    Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.
+</em>
 }
 
-
-@if (mainCategory) {
-  <table>
+@if (sushi) {
+<table>
     <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+            <!--//TODO: Add if for Price and oldPrice-->
+            <th>Price</th>
+            <th>Old Price</th>
+            <th>Description</th>
+            <th>Ingredients</th>
+        </tr>
     </thead>
     <tbody>
-      @for (category of mainCategory; track category.id) {
+        @for (s of sushi; track $index) {
         <tr>
-          <td>{{ category.name }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.actualPrice }}</td>
+            <td>{{ s.oldPrice }}</td>
+            <td>{{ s.description }}</td>
+            <td>
+                @for (i of s.ingredients; track $index){
+                Name: {{i.name}}<br />
+                Amount: {{i.amount}}<br />
+                <hr />
+                }
+            </td>
         </tr>
-      } @empty {
+        } @empty {
         <p>No content!</p>
-      }
+        }
     </tbody>
-  </table>
+</table>
 }

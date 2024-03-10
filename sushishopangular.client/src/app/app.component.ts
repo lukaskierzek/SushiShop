@@ -1,9 +1,22 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 
-interface MainCategory {
+interface ISushi {
   id: number,
   name: string,
+  actualPrice: number,
+  oldPrice: number
+  description: string,
+  mainCategory: string,
+  imageURL: string,
+  ingredients: IIngredietent[],
+  subCategories: any,
+}
+
+interface IIngredietent {
+  id: number,
+  name: string,
+  amount: number
 }
 
 @Component({
@@ -12,21 +25,26 @@ interface MainCategory {
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  public mainCategory: MainCategory[] = [];
+  public sushi: ISushi[] = [];
+  private getSushiURL: string = "https://localhost:7103/sushi-shop/sushi";
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.getMainCategories();
+  constructor(private http: HttpClient) {
   }
 
-  getMainCategories() {
-    this.http.get('https://localhost:7103/sushi-shop/all-main-category').subscribe(
-      (data: any) => {
-        this.mainCategory = data;
-        console.log(this.mainCategory);
+  ngOnInit() {
+    this.getSushi();
+  }
+
+  getSushi() {
+    this.http.get<ISushi[]>(this.getSushiURL).subscribe({
+      next: (data: ISushi[]) => {
+        this.sushi = data;
+        console.log(this.sushi);
+      },
+      error: (error) => {
+        console.error(error)
       }
-    );
+    });
   }
 
   title = 'sushishopangular.client';
