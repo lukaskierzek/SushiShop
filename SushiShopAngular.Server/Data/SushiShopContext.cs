@@ -11,6 +11,7 @@ namespace SushiShopAngular.Server.Data
         public DbSet<MainCategory> MainCategories { get; set; } = null!;
         public DbSet<SubCategory> SubCategories { get; set; } = null!;
         public DbSet<Ingredient> Ingredients { get; set; } = null!;
+        public DbSet<SushiIngredient> SushiIngredients { get; set; } = null!;
 
         public SushiShopContext(DbContextOptions<SushiShopContext> options) : base(options) { }
 

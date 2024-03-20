@@ -8,8 +8,10 @@
         public required string Description { get; init; }
         public required int MainCategoryId { get; set; }
         public required string ImageUrl { get; init; }
-        public int IsDeleted { get; set; }
-        public DateTime Created { get; set; } = DateTime.UtcNow;
-        public DateTime LastModified { get; set; } = DateTime.UtcNow;
+        public required int IsDeleted { get; init; }
+        public required List<CreateSushiIngredientDTO> SushiIngredients { get; init; }
+        //public required List<CreateSushiSubCategoryDTO> subCategories { get; init; }
+        public required DateTime Created { get; init; } = DateTime.UtcNow;
+        public required DateTime LastModified { get; init; } = DateTime.UtcNow;
     }
 }

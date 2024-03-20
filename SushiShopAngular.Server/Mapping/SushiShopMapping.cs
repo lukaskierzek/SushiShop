@@ -40,8 +40,10 @@ namespace SushiShopAngular.Server.Mapping
                     IsDeleted = (int)IsDeleted.No,
                     LastModified = e.LastModified,
                     Created = e.Created
-                }));
+                }))
+                .ForMember(e => e.sushiIngredients, c => c.MapFrom(e => e.SushiIngredients));
 
+            CreateMap<CreateSushiIngredientDTO, SushiIngredient>();
         }
     }
 }

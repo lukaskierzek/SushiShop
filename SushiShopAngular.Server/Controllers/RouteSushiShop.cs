@@ -7,6 +7,8 @@
         #region Sushi
         public const string AllSushi = "sushi";
         public const string SushiById = AllSushi + "/{id}";
+        public const string PostSushi = AllSushi;
+        public const string PutSushi = SushiById;
         #endregion
 
         #region Category

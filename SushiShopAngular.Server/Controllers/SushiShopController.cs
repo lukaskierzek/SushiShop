@@ -28,13 +28,7 @@ namespace SushiShopAngular.Server.Controllers
         [HttpGet(RouteSushiShop.AllSushi)]
         public async Task<ActionResult<IEnumerable<Sushi>>> GetAllSushi()
         {
-            var allSushis = await _context.Sushis
-                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
-                .Include(sushi => sushi.Ingredients)
-                .Include(sushi => sushi.SubCategories)
-                .Include(sushi => sushi.MainCategory)
-                .Include(sushi => sushi.Description)
-                .ToListAsync();
+            var allSushis = await _sushiService.GetAllSushi();
 
             var allSushisDTO = _sushiService.GetAllSushiDTO(allSushis);
 
@@ -44,44 +38,68 @@ namespace SushiShopAngular.Server.Controllers
         [HttpGet(RouteSushiShop.SushiById)]
         public async Task<ActionResult<Sushi>> GetSushiById([FromRoute] int id)
         {
-            var sushiById = await _context.Sushis
-                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
-                .FirstOrDefaultAsync(s => s.Id == id);
+            var sushiById = await _sushiService.GetSushiById(id);
 
             if (sushiById.IsNull())
                 return NotFound();
-            else
-            {
-                sushiById = await _context.Sushis
-                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
-                .Include(sushi => sushi.Ingredients)
-                .Include(sushi => sushi.SubCategories)
-                .Include(sushi => sushi.MainCategory)
-                .Include(sushi => sushi.Description)
-                .FirstOrDefaultAsync(s => s.Id == id);
-            }
 
             var sushiByIdDTO = _sushiService.GetSushiByIdDTO(sushiById);
 
-            if (sushiByIdDTO.IsNull()) return NotFound();
+            if (sushiByIdDTO.IsNull())
+                return NotFound();
 
             return Ok(sushiByIdDTO);
         }
 
-        [HttpPost(RouteSushiShop.AllSushi)]
+        [HttpPost(RouteSushiShop.PostSushi)]
         public async Task<ActionResult<Sushi>> PostSushi([FromBody] CreateSushiDTO createSushiDTO)
         {
             var sushi = _sushiService.CreateSushiFromSushiDTO(createSushiDTO);
-             
-            await _context.Sushis.AddAsync(sushi);
-            await _context.SaveChangesAsync();
+            var ingredients = createSushiDTO.SushiIngredients;
+            var ingredientsFromCreateSushiDTO = _sushiService.GetSushiIngredientDTOFromSushiPOST(ingredients);
 
-            return CreatedAtAction(nameof(GetSushiById), new {id = sushi.Id}, sushi);
+            await _sushiService.CreateSushi(sushi, ingredientsFromCreateSushiDTO);
+
+            return CreatedAtAction(nameof(GetSushiById), new { id = sushi.Id }, sushi);
+        }
+
+        [HttpPut("sushi/{id}")]
+        public async Task<IActionResult> PutSushi([FromRoute] int id, [FromBody] SushiDTO updateSushi)
+        {
+            var sushiById = await _sushiService.GetSushiById(id);
+
+            if (sushiById.IsNull())
+                return NotFound();
+
+            if (sushiById.Id != id)
+                return BadRequest();
+
+            AssignSushiValuesFromBody(sushiById, updateSushi);
+
+            try
+            {
+                await _sushiService.UpdateSushi(sushiById);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                var isAnySushi = _sushiService.AnySushi(id);
+                if (!isAnySushi)
+                    return NotFound();
+                else
+                    throw;
+            }
+
+            return NoContent();
+
+            static void AssignSushiValuesFromBody(Sushi sushi, SushiDTO updateSushi)
+            {
+                sushi.Name = updateSushi.Name;
+            }
         }
         #endregion
 
 
-        #region Ungredient
+        #region Ingredient
         [HttpGet(RouteSushiShop.AllIngredient)]
         public async Task<ActionResult<IEnumerable<Ingredient>>> GetAllIngredient()
         {
@@ -95,7 +113,7 @@ namespace SushiShopAngular.Server.Controllers
         }
         #endregion
 
-//======================================================================================================================================
+        //======================================================================================================================================
 
 #if DEBUG
 
@@ -109,6 +127,17 @@ namespace SushiShopAngular.Server.Controllers
             var allMainCategoryDTO = _sushiService.GetAllMainCategoryDTO(allCategories);
 
             return Ok(allMainCategoryDTO);
+        }
+
+        [HttpGet("rawMainCategory")]
+        public async Task<ActionResult<IEnumerable<MainCategory>>> GetAllRawMainCategory()
+        {
+            var allCategories = await _context.MainCategories
+                .Where(mc => mc.IsDeleted == (int)IsDeleted.No)
+                .Include(e => e.Sushis)
+                .ToListAsync();
+
+            return Ok(allCategories);
         }
 
 
