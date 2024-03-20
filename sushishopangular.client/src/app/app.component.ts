@@ -10,13 +10,18 @@ interface ISushi {
   mainCategory: string,
   imageURL: string,
   ingredients: IIngredietent[],
-  subCategories: any,
+  subCategories: ISubCategories[],
 }
 
 interface IIngredietent {
   id: number,
   name: string,
-  amount: number
+  amount: number,
+}
+
+interface ISubCategories {
+  id: number,
+  name: string,
 }
 
 @Component({

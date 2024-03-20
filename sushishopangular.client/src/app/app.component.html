@@ -21,6 +21,7 @@
 <table>
     <thead>
         <tr>
+            <th>Image</th>
             <th>Name</th>
             <!--//TODO: Add if for Price and oldPrice-->
             <th>Price</th>
@@ -32,6 +33,8 @@
     <tbody>
         @for (s of sushi; track $index) {
         <tr>
+            <!-- // TODO: Add image -->
+            <td>Image for '{{s.name}}'</td>
             <td>{{ s.name }}</td>
             <td>{{ s.actualPrice }}</td>
             <td>{{ s.oldPrice }}</td>
