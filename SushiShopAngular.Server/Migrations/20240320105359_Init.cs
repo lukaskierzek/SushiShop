@@ -71,6 +71,7 @@ namespace SushiShopAngular.Server.Migrations
                     ActualPrice = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
                     OldPrice = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
                     MainCategoryId = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
                     IsDeleted = table.Column<int>(type: "int", maxLength: 1, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -87,7 +88,7 @@ namespace SushiShopAngular.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SushiIngredient",
+                name: "SushiIngredients",
                 columns: table => new
                 {
                     SushiId = table.Column<int>(type: "int", nullable: false),
@@ -98,16 +99,16 @@ namespace SushiShopAngular.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SushiIngredient", x => new { x.IngredientId, x.SushiId });
+                    table.PrimaryKey("PK_SushiIngredients", x => new { x.IngredientId, x.SushiId });
                     table.CheckConstraint("CK_SushiIngredient_RangeAmount", "Amount >= 0 AND Amount <=100");
                     table.ForeignKey(
-                        name: "FK_SushiIngredient_Ingredients_IngredientId",
+                        name: "FK_SushiIngredients_Ingredients_IngredientId",
                         column: x => x.IngredientId,
                         principalTable: "Ingredients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SushiIngredient_Sushis_SushiId",
+                        name: "FK_SushiIngredients_Sushis_SushiId",
                         column: x => x.SushiId,
                         principalTable: "Sushis",
                         principalColumn: "Id",
@@ -167,9 +168,9 @@ namespace SushiShopAngular.Server.Migrations
                 columns: new[] { "Id", "Created", "IsDeleted", "LastModified", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5842), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5843), "Ingredient1" },
-                    { 2, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5846), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5846), "Ingredient3" },
-                    { 3, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5848), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5849), "Ingredient3" }
+                    { 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4466), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4467), "Ingredient1" },
+                    { 2, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4470), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4470), "Ingredient2" },
+                    { 3, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4473), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4473), "Ingredient3" }
                 });
 
             migrationBuilder.InsertData(
@@ -177,9 +178,9 @@ namespace SushiShopAngular.Server.Migrations
                 columns: new[] { "Id", "Created", "IsDeleted", "LastModified", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5721), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5722), "Main category 1" },
-                    { 2, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5724), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5724), "Main category 2" },
-                    { 3, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5726), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5727), "Main category 3" }
+                    { 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4382), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4382), "Main category 1" },
+                    { 2, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4385), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4385), "Main category 2" },
+                    { 3, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4387), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4388), "Main category 3" }
                 });
 
             migrationBuilder.InsertData(
@@ -187,30 +188,30 @@ namespace SushiShopAngular.Server.Migrations
                 columns: new[] { "Id", "Created", "IsDeleted", "LastModified", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5880), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5881), "subCategory1" },
-                    { 2, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5884), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5884), "subCategory2" },
-                    { 3, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5886), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5887), "subCategory3" }
+                    { 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4504), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4504), "subCategory1" },
+                    { 2, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4507), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4508), "subCategory2" },
+                    { 3, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4510), 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4510), "subCategory3" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Sushis",
-                columns: new[] { "Id", "ActualPrice", "Created", "IsDeleted", "LastModified", "MainCategoryId", "Name", "OldPrice" },
+                columns: new[] { "Id", "ActualPrice", "Created", "ImageUrl", "IsDeleted", "LastModified", "MainCategoryId", "Name", "OldPrice" },
                 values: new object[,]
                 {
-                    { 1, 10m, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5638), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5639), 1, "Sushi1", 10m },
-                    { 2, 10m, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5643), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5643), 2, "Sushi2", 9m },
-                    { 3, 10m, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5646), 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5647), 3, "Sushi3", 20m },
-                    { 4, 10m, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5650), 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5651), 3, "Sushi4", 20m }
+                    { 1, 10m, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4298), "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f", 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4298), 1, "Sushi1", 10m },
+                    { 2, 10m, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4302), "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f", 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4303), 2, "Sushi2", 9m },
+                    { 3, 10m, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4306), "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f", 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4307), 3, "Sushi3", 20m },
+                    { 4, 10m, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4310), "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f", 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4311), 3, "Sushi4", 20m }
                 });
 
             migrationBuilder.InsertData(
-                table: "SushiIngredient",
+                table: "SushiIngredients",
                 columns: new[] { "IngredientId", "SushiId", "Amount", "Created", "LastModified" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5949), new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5949) },
-                    { 1, 2, 3, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5953), new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5953) },
-                    { 2, 1, 2, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5951), new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5952) }
+                    { 1, 1, 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4637), new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4637) },
+                    { 1, 2, 3, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4641), new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4641) },
+                    { 2, 1, 2, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4639), new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4640) }
                 });
 
             migrationBuilder.InsertData(
@@ -218,9 +219,9 @@ namespace SushiShopAngular.Server.Migrations
                 columns: new[] { "SubCategoryId", "SushiId", "Created" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5916) },
-                    { 1, 2, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5919) },
-                    { 2, 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5918) }
+                    { 1, 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4594) },
+                    { 1, 2, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4600) },
+                    { 2, 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4599) }
                 });
 
             migrationBuilder.InsertData(
@@ -228,15 +229,15 @@ namespace SushiShopAngular.Server.Migrations
                 columns: new[] { "Id", "Created", "Description", "IsDeleted", "LastModified", "SushiId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5761), "SushiDescription1", 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5762), 1 },
-                    { 2, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5764), "SushiDescription2", 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5765), 2 },
-                    { 3, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5800), "SushiDescription3", 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5801), 3 },
-                    { 4, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5803), "SushiDescription4", 0, new DateTime(2024, 2, 29, 10, 46, 36, 819, DateTimeKind.Utc).AddTicks(5803), 4 }
+                    { 1, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4422), "SushiDescription1", 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4423), 1 },
+                    { 2, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4425), "SushiDescription2", 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4426), 2 },
+                    { 3, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4428), "SushiDescription3", 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4428), 3 },
+                    { 4, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4431), "SushiDescription4", 0, new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4431), 4 }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SushiIngredient_SushiId",
-                table: "SushiIngredient",
+                name: "IX_SushiIngredients_SushiId",
+                table: "SushiIngredients",
                 column: "SushiId");
 
             migrationBuilder.CreateIndex(
@@ -261,7 +262,7 @@ namespace SushiShopAngular.Server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SushiIngredient");
+                name: "SushiIngredients");
 
             migrationBuilder.DropTable(
                 name: "SushisDescriptions");

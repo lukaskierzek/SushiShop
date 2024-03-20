@@ -53,25 +53,25 @@ namespace SushiShopAngular.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5526),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4466),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5527),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4467),
                             Name = "Ingredient1"
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5529),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4470),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5530),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4470),
                             Name = "Ingredient2"
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5532),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4473),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5533),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4473),
                             Name = "Ingredient3"
                         });
                 });
@@ -107,25 +107,25 @@ namespace SushiShopAngular.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5372),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4382),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5374),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4382),
                             Name = "Main category 1"
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5376),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4385),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5376),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4385),
                             Name = "Main category 2"
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5378),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4387),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5379),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4388),
                             Name = "Main category 3"
                         });
                 });
@@ -161,25 +161,25 @@ namespace SushiShopAngular.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5566),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4504),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5567),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4504),
                             Name = "subCategory1"
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5570),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4507),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5570),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4508),
                             Name = "subCategory2"
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5572),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4510),
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5573),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4510),
                             Name = "subCategory3"
                         });
                 });
@@ -234,10 +234,10 @@ namespace SushiShopAngular.Server.Migrations
                         {
                             Id = 1,
                             ActualPrice = 10m,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5286),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4298),
                             ImageUrl = "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f",
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5287),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4298),
                             MainCategoryId = 1,
                             Name = "Sushi1",
                             OldPrice = 10m
@@ -246,10 +246,10 @@ namespace SushiShopAngular.Server.Migrations
                         {
                             Id = 2,
                             ActualPrice = 10m,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5291),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4302),
                             ImageUrl = "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f",
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5291),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4303),
                             MainCategoryId = 2,
                             Name = "Sushi2",
                             OldPrice = 9m
@@ -258,10 +258,10 @@ namespace SushiShopAngular.Server.Migrations
                         {
                             Id = 3,
                             ActualPrice = 10m,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5295),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4306),
                             ImageUrl = "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f",
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5295),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4307),
                             MainCategoryId = 3,
                             Name = "Sushi3",
                             OldPrice = 20m
@@ -270,10 +270,10 @@ namespace SushiShopAngular.Server.Migrations
                         {
                             Id = 4,
                             ActualPrice = 10m,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5299),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4310),
                             ImageUrl = "https://img.freepik.com/free-photo/freshness-plate-gourmet-seafood-maki-sushi-avocado-sashimi-generated-by-artificial-intelligence_25030-66337.jpg?w=1380&t=st=1709289227~exp=1709289827~hmac=b87b76aed267433a4760bd9582f1c8b8ca8564915573edeb67ebf356a0b3eb3f",
                             IsDeleted = 1,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5299),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4311),
                             MainCategoryId = 3,
                             Name = "Sushi4",
                             OldPrice = 20m
@@ -318,37 +318,37 @@ namespace SushiShopAngular.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5412),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4422),
                             Description = "SushiDescription1",
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5412),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4423),
                             SushiId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5415),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4425),
                             Description = "SushiDescription2",
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5416),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4426),
                             SushiId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5418),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4428),
                             Description = "SushiDescription3",
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5418),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4428),
                             SushiId = 3
                         },
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5420),
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4431),
                             Description = "SushiDescription4",
                             IsDeleted = 0,
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5421),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4431),
                             SushiId = 4
                         });
                 });
@@ -385,24 +385,24 @@ namespace SushiShopAngular.Server.Migrations
                             IngredientId = 1,
                             SushiId = 1,
                             Amount = 1,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5633),
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5634)
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4637),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4637)
                         },
                         new
                         {
                             IngredientId = 2,
                             SushiId = 1,
                             Amount = 2,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5637),
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5637)
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4639),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4640)
                         },
                         new
                         {
                             IngredientId = 1,
                             SushiId = 2,
                             Amount = 3,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5638),
-                            LastModified = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5639)
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4641),
+                            LastModified = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4641)
                         });
                 });
 
@@ -428,19 +428,19 @@ namespace SushiShopAngular.Server.Migrations
                         {
                             SubCategoryId = 1,
                             SushiId = 1,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5600)
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4594)
                         },
                         new
                         {
                             SubCategoryId = 2,
                             SushiId = 1,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5602)
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4599)
                         },
                         new
                         {
                             SubCategoryId = 1,
                             SushiId = 2,
-                            Created = new DateTime(2024, 3, 18, 19, 57, 34, 994, DateTimeKind.Utc).AddTicks(5603)
+                            Created = new DateTime(2024, 3, 20, 10, 53, 58, 859, DateTimeKind.Utc).AddTicks(4600)
                         });
                 });
 
