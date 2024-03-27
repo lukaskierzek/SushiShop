@@ -10,8 +10,6 @@ namespace SushiShopAngular.Server.Services.Interfaces
         List<SushiDTO> GetAllSushiDTO(List<Sushi> sushi);
         SushiDTO GetSushiByIdDTO(Sushi sushi);
         Sushi CreateSushiFromSushiDTO(CreateSushiDTO createSushiDTO);
-        List<MainCategoryDTO> GetAllMainCategoryDTO(List<MainCategory> sushi);
-        List<IngredientListDTO> GetAllIngredientDTO(List<Ingredient> ingredients);
         List<SushiIngredient> GetSushiIngredientDTOFromSushiPOST(List<CreateSushiIngredientDTO> ingredients);
     }
 }

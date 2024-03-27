@@ -2,6 +2,7 @@
 
 namespace SushiShopAngular.Server.ExtensionMethods
 {
+    // THIS CLASS IS WAITING FOR BETTER TIMES
     public static class SeedData
     {
         public static WebApplication Seed(this WebApplication app)
@@ -36,7 +37,7 @@ namespace SushiShopAngular.Server.ExtensionMethods
                                 new Models.Ingredient { }
                             );
 
-                        //context.SaveChanges();
+                        //context.SaveChanges()
                     }
                 }
                 catch (Exception) { throw; }

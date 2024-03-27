@@ -37,8 +37,8 @@ namespace SushiShopAngular.Server
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
             builder.Services.AddScoped<ISushiService, SushiService>();
-
-
+            builder.Services.AddScoped<IMainCategoryService, MainCategoryService>();
+            builder.Services.AddScoped<IIngredientService, IngredientService>();
 
             var app = builder.Build();
 
