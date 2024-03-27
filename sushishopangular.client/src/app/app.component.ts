@@ -8,7 +8,7 @@ interface ISushi {
   oldPrice: number
   description: string,
   mainCategory: string,
-  imageURL: string,
+  imageUrl: string,
   ingredients: IIngredietent[],
   subCategories: ISubCategories[],
 }
@@ -31,7 +31,7 @@ interface ISubCategories {
 })
 export class AppComponent implements OnInit {
   public sushi: ISushi[] = [];
-  private getSushiURL: string = "https://localhost:7103/sushi-shop/sushi";
+  private getSushiURL: string = "https://localhost:7103/SushiShop/sushiAll";
 
   constructor(private http: HttpClient) {
   }
