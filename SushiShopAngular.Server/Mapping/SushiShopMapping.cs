@@ -32,16 +32,16 @@ namespace SushiShopAngular.Server.Mapping
             CreateMap<MainCategory, MainCategoryDTO>();
 
             CreateMap<CreateSushiDTO, Sushi>()
-                .ForMember(s => s.Description,
-                c => c.MapFrom(e =>
+                .ForMember(sushi => sushi.Description,
+                c => c.MapFrom(csdto =>
                 new SushiDescription()
                 {
-                    Description = e.Description,
+                    Description = csdto.Description,
                     IsDeleted = (int)IsDeleted.No,
-                    LastModified = e.LastModified,
-                    Created = e.Created
+                    LastModified = csdto.LastModified,
+                    Created = csdto.Created
                 }))
-                .ForMember(e => e.sushiIngredients, c => c.MapFrom(e => e.SushiIngredients));
+                .ForMember(sushi => sushi.sushiIngredients, c => c.MapFrom(csdto => csdto.SushiIngredients));
 
             CreateMap<CreateSushiIngredientDTO, SushiIngredient>();
         }

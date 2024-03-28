@@ -1,0 +1,10 @@
+<p>navbar works!</p>
+<ul>
+  <li><a [routerLink]="'sushishop/sushi/all'">Lista sushi</a></li>
+  <ul>
+  @for (mc of mainCategories; track $index) {
+    <li><a [routerLink]="'sushishop/sushi/'"
+           [queryParams]="{ mainCategory: mc.name}">{{ mc.name }}</a></li>
+  }
+</ul>
+</ul>
