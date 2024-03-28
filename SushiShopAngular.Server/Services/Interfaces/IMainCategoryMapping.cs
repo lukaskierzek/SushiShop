@@ -1,5 +1,5 @@
-﻿using SushiShopAngular.Server.Models.ModelsDTO;
-using SushiShopAngular.Server.Models;
+﻿using SushiShopAngular.Server.Models;
+using SushiShopAngular.Server.Models.ModelsDTO;
 
 namespace SushiShopAngular.Server.Services.Interfaces
 {

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SushiShopAngular.Server.Models
+﻿namespace SushiShopAngular.Server.Models
 {
     public class SushiIngredient
     {

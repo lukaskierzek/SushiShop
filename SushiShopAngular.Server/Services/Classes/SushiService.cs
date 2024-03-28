@@ -22,6 +22,7 @@ namespace SushiShopAngular.Server.Services.Classes
 
         public async Task<List<Sushi>> GetAllSushi()
         {
+            // TODO: Delete where to show ALL sushi
             var sushi = await _context.Sushis
                 .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
                 .Include(sushi => sushi.Ingredients)

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SushiShopAngular.Server.Enums;
-using SushiShopAngular.Server.Models.ModelsDTO.Sushi;
-using SushiShopAngular.Server.Models;
 using SushiShopAngular.Server.Data;
-using AutoMapper;
+using SushiShopAngular.Server.Enums;
+using SushiShopAngular.Server.Models;
+using SushiShopAngular.Server.Models.ModelsDTO.Sushi;
 
 namespace SushiShopAngular.Server.Controllers
 {

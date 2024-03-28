@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SushiShopAngular.Server.Enums;
 using SushiShopAngular.Server.Models;
-using SushiShopAngular.Server.Services.Classes;
 using SushiShopAngular.Server.Services.Interfaces;
 
 namespace SushiShopAngular.Server.Controllers
