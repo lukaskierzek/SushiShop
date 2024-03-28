@@ -14,11 +14,7 @@ export class SushiService {
     return this.http.get<ISushi[]>("https://localhost:7103/SushiShop/sushiAll");
   }
 
-  getSushiByMainCategory(mainCategory: string): Observable<any> {
-      return this.http.get<any>(`https://localhost:7103/SushiShop/sushi?mainCategory=${mainCategory}`);
-  }
-
-  getMainCategories(): Observable<any> {
-    return this.http.get<any>("https://localhost:7103/MainCategory/main-category");
+  getSushiByMainCategory(mainCategory: string): Observable<ISushi[]> {
+      return this.http.get<ISushi[]>(`https://localhost:7103/SushiShop/sushi?mainCategory=${mainCategory}`);
   }
 }

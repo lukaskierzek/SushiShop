@@ -1,3 +1,25 @@
-<p>by-main-category-sushi works!</p>
+<p>{{ mainCategory }}</p>
 
-<p>{{sushiByMainCategory[0].name}}</p>
+<div class="flex-container">
+  @for (s of sushiByMainCategory; track $index) {
+
+    <div>
+      <img src="{{s.imageUrl}}"
+           loading="lazy"
+           alt="Zdjęcie {{s.name}}"/>
+      <span id="sushiName">{{ s.name }}</span>
+      <span id="sushiIngredient">@for (i of s.ingredients; track $index) {
+        &#x2022; {{ i.amount }}x {{ i.name }}<br/>
+      }</span>
+
+      @if (s.actualPrice < s.oldPrice) {
+        <span id="oldPrice">{{ s.oldPrice }} zł</span>
+        <span id="newPrice">{{ s.actualPrice }} zł</span>
+      } @else {
+        <span id="price">{{ s.actualPrice }} zł</span>
+      }
+    </div>
+  } @empty {
+    <p>No sushi for: "{{ mainCategory }}"</p>
+  }
+</div>

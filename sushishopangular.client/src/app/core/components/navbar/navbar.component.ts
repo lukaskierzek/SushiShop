@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import { SushiService } from '../../../features/sushi/services/sushi.service.service';
+import {NavbarService} from "../services/navbar.service";
 
 
 @Component({
@@ -10,9 +10,10 @@ import { SushiService } from '../../../features/sushi/services/sushi.service.ser
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   public mainCategories: any[] = [];
+
   private getMainCategoriesSubscription?: Subscription;
 
-  constructor(private sushiService: SushiService) {
+  constructor(private navbarService: NavbarService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getMainCategories(): void {
-    this.getMainCategoriesSubscription = this.sushiService.getMainCategories()
+    this.getMainCategoriesSubscription = this.navbarService.getMainCategories()
       .subscribe({
         next: (data: any) => {
           this.mainCategories = data;

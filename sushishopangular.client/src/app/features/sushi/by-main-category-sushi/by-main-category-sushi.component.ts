@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SushiService} from "../services/sushi.service.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
+import {ISushi} from "../models/interface-sushi.model";
 
 @Component({
   selector: 'app-by-main-category-sushi',
@@ -9,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './by-main-category-sushi.component.css'
 })
 export class ByMainCategorySushiComponent implements OnInit, OnDestroy {
-  public sushiByMainCategory: any[] = [];
+  public sushiByMainCategory: ISushi[] = [];
   mainCategory: string | undefined;
 
   private getSushiByMainCategorySubscription?: Subscription;
@@ -27,15 +28,14 @@ export class ByMainCategorySushiComponent implements OnInit, OnDestroy {
         console.log(`Main categories params:`);
         console.log(params)
         this.mainCategory = params['mainCategory'];
-        console.log(`Main category: ${this.mainCategory}` );
+        console.log(`Main category: ${this.mainCategory}`);
         this.getSushiByManCategory(this.mainCategory);
       })
   }
 
   getSushiByManCategory(mainCategory: string | undefined): void {
-    if (mainCategory === undefined)
-    { }
-    else {
+    if (mainCategory === undefined) {
+    } else {
       this.getSushiByMainCategorySubscription = this.sushiService.getSushiByMainCategory(mainCategory)
         .subscribe({
           next: (data: any[]) => {
