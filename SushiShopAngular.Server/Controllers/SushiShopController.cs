@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SushiShopAngular.Server.Data;
 using SushiShopAngular.Server.ExtensionMethods;
 using SushiShopAngular.Server.Models;
 using SushiShopAngular.Server.Models.ModelsDTO.Sushi;
@@ -13,7 +12,6 @@ namespace SushiShopAngular.Server.Controllers
     [Route("[controller]")]
     public class SushiShopController : ControllerBase
     {
-        private readonly SushiShopContext _context;
         private readonly IMapper _mapper;
         private readonly ISushiService _sushiService;
         public SushiShopController(IMapper mapper, ISushiService sushiService)
@@ -25,7 +23,7 @@ namespace SushiShopAngular.Server.Controllers
         [HttpGet("sushiAll")]
         public async Task<ActionResult<IEnumerable<Sushi>>> GetAllSushi()
         {
-            var allSushis = await _sushiService.GetAllSushi();
+            var allSushis = await _sushiService.GetAllSushiWithDeleted();
 
             var allSushisDTO = _sushiService.GetAllSushiDTO(allSushis);
 
@@ -72,7 +70,7 @@ namespace SushiShopAngular.Server.Controllers
         [HttpPut("sushi/{id}")]
         public async Task<IActionResult> PutSushi([FromRoute] int id, [FromBody] SushiDTO updateSushi)
         {
-            var sushiById = await _sushiService.GetSushiById(id);
+            var sushiById = await _sushiService.GetSushiByIdPut(id);
 
             if (sushiById.IsNull())
                 return NotFound();
@@ -100,7 +98,12 @@ namespace SushiShopAngular.Server.Controllers
             static void AssignSushiValuesFromBody(Sushi sushi, SushiDTO updateSushi)
             {
                 sushi.Name = updateSushi.Name;
-                // TODO: Add more values
+                sushi.ActualPrice = updateSushi.ActualPrice;
+                sushi.OldPrice = updateSushi.OldPrice;
+                sushi.Description.Description = updateSushi.Description;
+                sushi.MainCategory.Name = updateSushi.MainCategory;
+                sushi.IsDeleted = updateSushi.IsDeleted;
+                sushi.LastModified = updateSushi.LastModified;
             }
         }
     }

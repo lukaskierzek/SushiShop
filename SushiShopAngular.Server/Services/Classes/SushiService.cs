@@ -20,11 +20,9 @@ namespace SushiShopAngular.Server.Services.Classes
             _mapper = mapper;
         }
 
-        public async Task<List<Sushi>> GetAllSushi()
+        public async Task<List<Sushi>> GetAllSushiWithDeleted()
         {
-            // TODO: Delete where to show ALL sushi
             var sushi = await _context.Sushis
-                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
                 .Include(sushi => sushi.Ingredients)
                 .Include(sushi => sushi.SubCategories)
                 .Include(sushi => sushi.MainCategory)
@@ -67,6 +65,18 @@ namespace SushiShopAngular.Server.Services.Classes
         {
             var sushiById = await _context.Sushis
                 .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
+                .Include(sushi => sushi.Ingredients)
+                .Include(sushi => sushi.SubCategories)
+                .Include(sushi => sushi.MainCategory)
+                .Include(sushi => sushi.Description)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            return sushiById;
+        }
+
+        public async Task<Sushi> GetSushiByIdPut(int id)
+        {
+            var sushiById = await _context.Sushis
                 .Include(sushi => sushi.Ingredients)
                 .Include(sushi => sushi.SubCategories)
                 .Include(sushi => sushi.MainCategory)

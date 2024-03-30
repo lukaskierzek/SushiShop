@@ -13,5 +13,7 @@ namespace SushiShopAngular.Server.Models.ModelsDTO.Sushi
         public required string ImageUrl { get; init; }
         public required List<IngredientDTO> ingredients { get; init; }
         public required List<SubCategoryDTO> SubCategories { get; init; }
+        public required int IsDeleted { get; init; }
+        public DateTime LastModified { get; set; } = DateTime.UtcNow;
     }
 }

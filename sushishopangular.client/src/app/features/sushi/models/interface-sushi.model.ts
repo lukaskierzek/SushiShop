@@ -8,6 +8,7 @@ export interface ISushi {
   imageUrl: string,
   ingredients: IIngredietent[],
   subCategories: ISubCategories[],
+  isDeleted: number,
 }
 
 interface IIngredietent {

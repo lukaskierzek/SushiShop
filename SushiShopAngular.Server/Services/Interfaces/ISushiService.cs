@@ -6,9 +6,10 @@ namespace SushiShopAngular.Server.Services.Interfaces
     {
         bool AnySushi(int id);
         Task<Sushi> CreateSushi(Sushi sushi, List<SushiIngredient> sushiIngredients);
-        Task<List<Sushi>> GetAllSushi();
+        Task<List<Sushi>> GetAllSushiWithDeleted();
         Task<List<Sushi>> GetAllSushiByQuery(string mainCategoryName);
         Task<Sushi> GetSushiById(int id);
         Task<Sushi> UpdateSushi(Sushi sushi);
+        Task<Sushi> GetSushiByIdPut(int id);
     }
 }

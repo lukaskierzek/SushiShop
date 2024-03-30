@@ -1,4 +1,3 @@
-<p>LIST OF ALL SUSHI</p>
 <h1 id="tableLabel">
   @if (sushi.length >= 1) {
     <iframe src="https://www.youtube.com/embed/yvTMt_yY0T8?autoplay=1"
@@ -19,6 +18,8 @@
   </em>
 }
 
+<hr/>
+<h2>LIST OF ALL SUSHI</h2>
 @if (sushi) {
   <table>
     <thead>
@@ -30,6 +31,8 @@
       <th>Description</th>
       <th>Category</th>
       <th>Ingredients</th>
+      <th>Is hidden</th>
+      <th>Actions</th>
       <!-- TODO: Add action buttons -->
     </tr>
     </thead>
@@ -62,14 +65,33 @@
               <hr/>
             }
           </td>
+          <td>
+            @if (s.isDeleted === 0) {
+              {{ isHidden.NO }}
+            } @else {
+              {{ isHidden.YES }}
+            }
+          </td>
+          <td>
+            @if (s.isDeleted === 0) {
+              <button
+                id="hideButton"
+                (click)="onHideClick(s)">Hide
+              </button>
+            } @else {
+              <button
+                id="showButton"
+                (click)="onShowClick(s)">Show
+              </button>
+            }
+          </td>
         </tr>
       } @empty {
         <tr>
-          <td colspan="7">No content!</td>
+          <td colspan="9">No content!</td>
         </tr>
       }
     </tbody>
   </table>
 }
 <hr/>
-
