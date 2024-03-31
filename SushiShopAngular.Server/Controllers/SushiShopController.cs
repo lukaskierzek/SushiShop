@@ -70,7 +70,7 @@ namespace SushiShopAngular.Server.Controllers
         [HttpPut("sushi/{id}")]
         public async Task<IActionResult> PutSushi([FromRoute] int id, [FromBody] SushiDTO updateSushi)
         {
-            var sushiById = await _sushiService.GetSushiByIdPut(id);
+            var sushiById = await _sushiService.GetSushiById(id);
 
             if (sushiById.IsNull())
                 return NotFound();

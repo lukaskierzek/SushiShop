@@ -3,7 +3,6 @@ import {ISushi} from "../models/interface-sushi.model";
 import {Subscription} from "rxjs";
 import {SushiService} from "../services/sushi.service.service";
 import {IsDeleted} from "../models/is-deleted.models";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-sushi',
@@ -17,7 +16,7 @@ export class ListSushiComponent implements OnInit, OnDestroy {
   private hideSushiSubscription?: Subscription;
   private showSushiSubscription?: Subscription;
 
-  constructor(private sushiService: SushiService, private router: Router) {
+  constructor(private sushiService: SushiService) {
   }
 
   ngOnDestroy(): void {
@@ -46,7 +45,7 @@ export class ListSushiComponent implements OnInit, OnDestroy {
   onHideClick(s: ISushi): void {
     let result: boolean = confirm('Hide the sushi?')
     if (result) {
-      this.sushiService.hideSushi(s)
+      this.hideSushiSubscription = this.sushiService.hideSushi(s)
         .subscribe({
           next: value => {
             alert('Hidden! The page will reload!');
@@ -63,7 +62,7 @@ export class ListSushiComponent implements OnInit, OnDestroy {
   onShowClick(s: ISushi) {
     let result: boolean = confirm('Show the sushi?')
     if (result) {
-      this.sushiService.showSushi(s)
+      this.showSushiSubscription = this.sushiService.showSushi(s)
         .subscribe({
           next: value => {
             alert('Shown! The page will reload!');

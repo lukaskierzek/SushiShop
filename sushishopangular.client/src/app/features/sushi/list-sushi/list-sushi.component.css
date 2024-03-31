@@ -1,1 +1,18 @@
 @import url("../../../app.component.css");
+
+button {
+  cursor: pointer;
+  padding: 10px;
+}
+
+#showButton {
+  background-color: lightgreen;
+}
+
+#hideButton {
+  background-color: lightcoral;
+}
+
+#detailsButton {
+  background-color: lightyellow;
+}

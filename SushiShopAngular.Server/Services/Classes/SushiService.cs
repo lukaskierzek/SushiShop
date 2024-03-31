@@ -64,19 +64,7 @@ namespace SushiShopAngular.Server.Services.Classes
         public async Task<Sushi> GetSushiById(int id)
         {
             var sushiById = await _context.Sushis
-                .Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
-                .Include(sushi => sushi.Ingredients)
-                .Include(sushi => sushi.SubCategories)
-                .Include(sushi => sushi.MainCategory)
-                .Include(sushi => sushi.Description)
-                .FirstOrDefaultAsync(s => s.Id == id);
-
-            return sushiById;
-        }
-
-        public async Task<Sushi> GetSushiByIdPut(int id)
-        {
-            var sushiById = await _context.Sushis
+                //.Where(sushi => sushi.IsDeleted == (int)IsDeleted.No)
                 .Include(sushi => sushi.Ingredients)
                 .Include(sushi => sushi.SubCategories)
                 .Include(sushi => sushi.MainCategory)
@@ -92,6 +80,7 @@ namespace SushiShopAngular.Server.Services.Classes
 
             await _context.Sushis.AddAsync(sushi);
             await _context.SushiIngredients.AddRangeAsync(sushiIngredients);
+            // TODO: Add subcategiories
             await _context.SaveChangesAsync();
 
             return sushi;

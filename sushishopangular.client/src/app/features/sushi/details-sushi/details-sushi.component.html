@@ -1,0 +1,28 @@
+<h2>{{ sushiById?.name }}</h2>
+<div class="flex-container">
+
+  <div>
+    <img src="{{sushiById?.imageUrl}}"
+         loading="lazy"
+         alt="Zdjęcie {{sushiById?.name}}"/>
+
+  </div>
+  <div>
+    <span id="sushiName">{{ sushiById?.name }}</span>
+    <hr />
+    @if (sushiById?.actualPrice < sushiById?.oldPrice) {
+      <span id="oldPrice">{{ sushiById?.oldPrice }} zł</span>
+      <span id="newPrice">{{ sushiById?.actualPrice }} zł</span>
+    } @else {
+      <span id="price">{{ sushiById?.actualPrice }} zł</span>
+    }
+
+    <span id="sushiDescription">{{sushiById?.description}}</span>
+
+    <span id="sushiIngredient">@for (i of sushiById?.ingredients; track $index) {
+      &#x2022; {{ i.amount }}x {{ i.name }}<br/>
+    }</span>
+
+
+  </div>
+</div>

@@ -76,14 +76,20 @@
             @if (s.isDeleted === 0) {
               <button
                 id="hideButton"
-                (click)="onHideClick(s)">Hide
+                (click)="onHideClick(s)"
+              >
+                Hide
               </button>
             } @else {
               <button
                 id="showButton"
-                (click)="onShowClick(s)">Show
+                (click)="onShowClick(s)"
+              >
+                Show
               </button>
             }
+            <a [routerLink]="['/sushishop/sushi/', s.id]"><button id="detailsButton">Details</button></a>
+            <!-- // TODO: Add edit edit -->
           </td>
         </tr>
       } @empty {

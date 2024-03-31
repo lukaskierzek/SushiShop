@@ -19,6 +19,10 @@ export class SushiService {
     return this.http.get<ISushi[]>(`https://localhost:7103/SushiShop/sushi?mainCategory=${mainCategory}`);
   }
 
+  getSushiById(id: string | null): Observable<ISushi[]> {
+    return this.http.get<ISushi[]>(`https://localhost:7103/SushiShop/sushi/${id}`);
+  }
+
   hideSushi(s: ISushi): Observable<void> {
     return this.http.put<void>(`https://localhost:7103/SushiShop/sushi/${s.id}`,
       {

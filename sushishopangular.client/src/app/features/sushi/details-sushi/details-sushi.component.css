@@ -2,15 +2,16 @@
 
 .flex-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-direction: row;
   /*background-color: aquamarine;*/
   justify-content: center;
 }
 
 .flex-container > div{
   background-color: #545454;
-  margin: 10px;
-  width: 250px;
+  /*margin: 10px;*/
+  /*width: 60%;*/
   padding: 10px;
 }
 
@@ -27,6 +28,13 @@ p {
 }
 
 #sushiIngredient {
+  display: block;
+  color: #ffffff;
+  font-size: large;
+  text-align: left;
+}
+
+#sushiDescription {
   display: block;
   color: #ffffff;
   font-size: large;
@@ -60,7 +68,7 @@ span {
   padding-bottom: 10px;
 }
 
-a {
-  all: unset;
-  cursor: pointer;
+img {
+  height: 230px;
+  width: 350px;
 }

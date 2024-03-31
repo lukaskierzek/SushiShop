@@ -10,6 +10,5 @@ namespace SushiShopAngular.Server.Services.Interfaces
         Task<List<Sushi>> GetAllSushiByQuery(string mainCategoryName);
         Task<Sushi> GetSushiById(int id);
         Task<Sushi> UpdateSushi(Sushi sushi);
-        Task<Sushi> GetSushiByIdPut(int id);
     }
 }
