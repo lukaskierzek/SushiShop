@@ -19,8 +19,10 @@ Web page where you can buy sushi.
 
 ## Features
 - You can browse sushi by categories.
-- You can browse sushi by ingredients.
+- You can browse sushi by ingredients. _IN PROGRESS_
 - Each sushi has a subpage with a detailed description.
+- Admin can edit sushi.
+- Admin can add sushi. _IN PROGRESS_
 
 ## Screenshots
 >**Database diagram**
