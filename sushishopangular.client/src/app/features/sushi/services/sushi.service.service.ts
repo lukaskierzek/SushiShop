@@ -56,4 +56,20 @@ export class SushiService {
       }
     );
   }
+
+  putSushi(s: any): Observable<void> {
+    return this.http.put<void>(`https://localhost:7103/SushiShop/sushi/${s.id}`,
+      {
+        "id": s.id,
+        "name": s.sushiName,
+        "actualPrice": s.actualPrice,
+        "oldPrice": s.oldPrice,
+        "description": s.description,
+        "mainCategory": s.mainCategory,
+        "imageUrl": s.imageUrl,
+        "ingredients": [],
+        "subCategories": [],
+        "isDeleted": 0
+      });
+  }
 }

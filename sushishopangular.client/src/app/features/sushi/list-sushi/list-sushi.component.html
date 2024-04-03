@@ -33,7 +33,6 @@
       <th>Ingredients</th>
       <th>Is hidden</th>
       <th>Actions</th>
-      <!-- TODO: Add action buttons -->
     </tr>
     </thead>
     <tbody>
@@ -88,8 +87,12 @@
                 Show
               </button>
             }
-            <a [routerLink]="['/sushishop/sushi/', s.id]"><button id="detailsButton">Details</button></a>
-            <!-- // TODO: Add edit edit -->
+            <a [routerLink]="['/sushishop/sushi/', s.id]">
+              <button id="detailsButton">Details</button>
+            </a>
+            <a [routerLink]="['/sushishop/sushi/', s.id, 'edit']">
+              <button id="editButton">Edit</button>
+            </a>
           </td>
         </tr>
       } @empty {

@@ -9,7 +9,7 @@
   </div>
   <div>
     <span id="sushiName">{{ sushiById?.name }}</span>
-    <hr />
+    <hr/>
     @if (sushiById?.actualPrice < sushiById?.oldPrice) {
       <span id="oldPrice">{{ sushiById?.oldPrice }} zł</span>
       <span id="newPrice">{{ sushiById?.actualPrice }} zł</span>
@@ -17,12 +17,16 @@
       <span id="price">{{ sushiById?.actualPrice }} zł</span>
     }
 
-    <span id="sushiDescription">{{sushiById?.description}}</span>
+    <span id="sushiDescription">{{ sushiById?.description }}</span>
 
     <span id="sushiIngredient">@for (i of sushiById?.ingredients; track $index) {
       &#x2022; {{ i.amount }}x {{ i.name }}<br/>
     }</span>
 
-
+  </div>
+  <div>
+    <a [routerLink]="['/sushishop/sushi/', sushiById?.id, 'edit']">
+      <button>edit</button>
+    </a>
   </div>
 </div>

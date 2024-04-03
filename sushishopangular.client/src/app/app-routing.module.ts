@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ListSushiComponent} from "./features/sushi/list-sushi/list-sushi.component";
 import {ByMainCategorySushiComponent} from "./features/sushi/by-main-category-sushi/by-main-category-sushi.component";
 import {DetailsSushiComponent} from "./features/sushi/details-sushi/details-sushi.component";
+import {EditSushiComponent} from "./features/sushi/edit-sushi/edit-sushi.component";
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'sushishop/sushi',
-    component: ByMainCategorySushiComponent,
+    component: ByMainCategorySushiComponent
   },
   {
     path: 'sushishop/sushi/all',
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'sushishop/sushi/:id',
     component: DetailsSushiComponent
+  },
+  {
+    path: 'sushishop/sushi/:id/edit',
+    component: EditSushiComponent
   }
 ];
 

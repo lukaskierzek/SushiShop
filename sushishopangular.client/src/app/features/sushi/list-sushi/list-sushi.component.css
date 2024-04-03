@@ -16,3 +16,7 @@ button {
 #detailsButton {
   background-color: lightyellow;
 }
+
+#editButton {
+  background-color: lightblue;
+}

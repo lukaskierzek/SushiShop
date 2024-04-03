@@ -1,0 +1,36 @@
+<p>edit-sushi works!</p>
+
+<div class="flex-container">
+  <div>
+    <form [formGroup]="editSushiForm" (submit)="submitEditSushi()">
+      <fieldset>
+        <legend>Edit {{ sushiById.name }}</legend>
+
+        <table>
+          <tr>
+            <td><label for="sushi-name">Name</label></td>
+            <td><input id="sushi-name" type="text" formControlName="sushiName"></td>
+          </tr>
+
+          <tr>
+            <td><label for="actual-price">Actual price</label></td>
+            <td><input id="actual-price" type="number" formControlName="actualPrice"></td>
+          </tr>
+
+          <tr>
+            <td><label for="description">Description</label></td>
+            <td><textarea id="description" formControlName="description" rows="10" cols="30"></textarea></td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <button type="submit">Update!</button>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+
