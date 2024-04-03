@@ -98,8 +98,10 @@ namespace SushiShopAngular.Server.Controllers
             static void AssignSushiValuesFromBody(Sushi sushi, SushiDTO updateSushi)
             {
                 sushi.Name = updateSushi.Name;
+
+                sushi.OldPrice = sushi.ActualPrice;
                 sushi.ActualPrice = updateSushi.ActualPrice;
-                sushi.OldPrice = updateSushi.OldPrice;
+
                 sushi.Description.Description = updateSushi.Description;
                 sushi.MainCategory.Name = updateSushi.MainCategory;
                 sushi.IsDeleted = updateSushi.IsDeleted;
