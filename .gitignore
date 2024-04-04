@@ -31,3 +31,4 @@ bin/
 obj/
 SQLQueries/
 Controllers/RawController.cs
+/SushiShopAngular.Server/Controllers/RawController.cs
