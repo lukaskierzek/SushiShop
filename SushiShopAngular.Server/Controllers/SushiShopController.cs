@@ -14,10 +14,13 @@ namespace SushiShopAngular.Server.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ISushiService _sushiService;
-        public SushiShopController(IMapper mapper, ISushiService sushiService)
+        private readonly IMainCategoryService _mainCategoryService;
+
+        public SushiShopController(IMapper mapper, ISushiService sushiService, IMainCategoryService mainCategoryService)
         {
             _mapper = mapper;
             _sushiService = sushiService;
+            _mainCategoryService = mainCategoryService;
         }
 
         [HttpGet("sushiAll")]
@@ -71,6 +74,7 @@ namespace SushiShopAngular.Server.Controllers
         public async Task<IActionResult> PutSushi([FromRoute] int id, [FromBody] SushiDTO updateSushi)
         {
             var sushiById = await _sushiService.GetSushiById(id);
+            int mainCategoryIdFromUpdateSushi = await _mainCategoryService.GetMainCategoryId(updateSushi.MainCategory);
 
             if (sushiById.IsNull())
                 return NotFound();
@@ -78,7 +82,7 @@ namespace SushiShopAngular.Server.Controllers
             if (sushiById.Id != id)
                 return BadRequest();
 
-            AssignSushiValuesFromBody(sushiById, updateSushi);
+            AssignSushiValuesFromBody(sushiById, updateSushi, mainCategoryIdFromUpdateSushi);
 
             try
             {
@@ -95,17 +99,18 @@ namespace SushiShopAngular.Server.Controllers
 
             return NoContent();
 
-            static void AssignSushiValuesFromBody(Sushi sushi, SushiDTO updateSushi)
+            static void AssignSushiValuesFromBody(Sushi sushi, SushiDTO updateSushi, int mainCategoryIdByUpdateSushi)
             {
                 sushi.Name = updateSushi.Name;
-
                 sushi.OldPrice = sushi.ActualPrice;
                 sushi.ActualPrice = updateSushi.ActualPrice;
-
                 sushi.Description.Description = updateSushi.Description;
-                sushi.MainCategory.Name = updateSushi.MainCategory;
+                sushi.MainCategoryId = mainCategoryIdByUpdateSushi;
+                
                 sushi.IsDeleted = updateSushi.IsDeleted;
                 sushi.LastModified = updateSushi.LastModified;
+
+                // TODO: Add ingredient
             }
         }
     }

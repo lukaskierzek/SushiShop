@@ -67,7 +67,7 @@ export class SushiService {
         "description": s.description,
         "mainCategory": s.mainCategory,
         "imageUrl": s.imageUrl,
-        "ingredients": [],
+        "ingredients": s.ingredients,
         "subCategories": [],
         "isDeleted": 0
       });

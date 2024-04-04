@@ -4,6 +4,7 @@ using SushiShopAngular.Server.Data;
 using SushiShopAngular.Server.Enums;
 using SushiShopAngular.Server.Models;
 using SushiShopAngular.Server.Models.ModelsDTO;
+using SushiShopAngular.Server.Models.ModelsDTO.Sushi;
 using SushiShopAngular.Server.Services.Interfaces;
 
 namespace SushiShopAngular.Server.Services.Classes
@@ -28,6 +29,13 @@ namespace SushiShopAngular.Server.Services.Classes
                 .ToListAsync();
 
             return mainCategories;
+        }
+
+        public async Task<int> GetMainCategoryId(string mainCategoryName)
+        {
+            var id = await _context.MainCategories.Where(mc => mc.Name == mainCategoryName).Select(mc=>mc.Id).FirstOrDefaultAsync();
+
+            return id;
         }
     }
 }
