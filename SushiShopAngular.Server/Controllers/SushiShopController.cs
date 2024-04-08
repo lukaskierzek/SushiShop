@@ -90,7 +90,7 @@ namespace SushiShopAngular.Server.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                var isAnySushi = _sushiService.AnySushi(id);
+                bool isAnySushi = _sushiService.AnySushi(id);
                 if (!isAnySushi)
                     return NotFound();
                 else

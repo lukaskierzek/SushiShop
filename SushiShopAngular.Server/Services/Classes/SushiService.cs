@@ -79,6 +79,7 @@ namespace SushiShopAngular.Server.Services.Classes
             sushi.sushiIngredients.Clear();
 
             await _context.Sushis.AddAsync(sushi);
+            // TODO: Check proper SushiIngredients save
             await _context.SushiIngredients.AddRangeAsync(sushiIngredients);
             // TODO: Add subcategiories
             await _context.SaveChangesAsync();
@@ -88,6 +89,7 @@ namespace SushiShopAngular.Server.Services.Classes
 
         public async Task<Sushi> UpdateSushi(Sushi sushi)
         {
+            // TODO: Check proper SushiIngredients save
             _context.Entry(sushi).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 

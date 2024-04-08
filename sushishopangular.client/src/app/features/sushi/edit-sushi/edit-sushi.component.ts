@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SushiService} from "../services/sushi.service.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
-import {Subscription} from "rxjs";
+import {forkJoin, Subscription} from "rxjs";
 import {ISushi} from "../models/interface-sushi.model";
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder} from "@angular/forms";
 import {NavbarService} from "../../../core/components/services/navbar.service";
 
 @Component({
@@ -13,13 +13,21 @@ import {NavbarService} from "../../../core/components/services/navbar.service";
 })
 export class EditSushiComponent implements OnInit, OnDestroy {
   sushiId: string | null | undefined;
+
+  // TODO: Add interfaces
   public sushiById: any = [];
   public mainCategories: any = [];
+  public ingredients: any = [];
+
   private getSushiByIdSubscription?: Subscription;
   private putSushiSubscription?: Subscription;
   private getMaincategoriesSubscription?: Subscription;
+  private getIngredientsSubscription?: Subscription;
 
-  constructor(private sushiService: SushiService, private route: ActivatedRoute, private navbarService: NavbarService, private fb: FormBuilder) {
+  constructor(private sushiService: SushiService,
+              private route: ActivatedRoute,
+              private navbarService: NavbarService,
+              private fb: FormBuilder) {
   }
 
   editSushiForm = this.fb.group({
@@ -31,58 +39,41 @@ export class EditSushiComponent implements OnInit, OnDestroy {
     mainCategory: [''],
     imageUrl: [''],
     ingredients: this.fb.array([])
-
   })
 
-
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
+    this.route.paramMap.subscribe((params: ParamMap): void => {
       this.sushiId = params.get('id');
+    })
+
+    forkJoin([
+      this.sushiService.getIngredients(),
+      this.navbarService.getMainCategories()
+    ]).subscribe(([ingredients, mainCategories]): void => {
+      this.ingredients = ingredients;
+      this.mainCategories = mainCategories
       this.getSushiById(this.sushiId);
     })
-    this.getMainCategories();
   }
 
   ngOnDestroy(): void {
+    this.getIngredientsSubscription?.unsubscribe();
     this.getSushiByIdSubscription?.unsubscribe();
     this.putSushiSubscription?.unsubscribe();
     this.getMaincategoriesSubscription?.unsubscribe();
   }
 
-  getMainCategories(): void {
-    this.getMaincategoriesSubscription = this.navbarService.getMainCategories()
-      .subscribe({
-        next: (data: any[]) => {
-          this.mainCategories = data;
-          console.log("Main categories:");
-          console.log(this.mainCategories);
-        },
-        error: err => {
-          console.error(err);
-        }
-      });
-  }
-
-  get Ingredient(): FormArray {
-    return this.editSushiForm.get('ingredients') as FormArray;
-  }
-
-  addIngredient() {
-    this.Ingredient.push(this.patchIngredients('', 0));
-  }
-
-  patchIngredients(name: string, amount: number){
+  patchIngredients(id: number, check: boolean, name: string, amount: number) {
     return this.fb.group({
+      id: [id],
+      isChecked: [check],
       name: [name],
       amount: [amount]
     })
   }
 
-  removeIngredient(i: number) {
-    this.Ingredient.removeAt(i);
-  }
 
-  getSushiById(id: string | null): void {
+  getSushiById(id: string | null | undefined): void {
     const controls = <FormArray>this.editSushiForm.get('ingredients');
     this.getSushiByIdSubscription = this.sushiService.getSushiById(id)
       .subscribe({
@@ -92,6 +83,8 @@ export class EditSushiComponent implements OnInit, OnDestroy {
           console.log(data);
           console.log("this.sushiById:");
           console.log(this.sushiById);
+          console.log("Ingredients:");
+          console.log(this.ingredients);
 
           this.editSushiForm.get('id')?.setValue(this.sushiById.id);
           this.editSushiForm.get('sushiName')?.setValue(this.sushiById.name);
@@ -101,9 +94,22 @@ export class EditSushiComponent implements OnInit, OnDestroy {
           this.editSushiForm.get('mainCategory')?.setValue(this.sushiById.mainCategory);
           this.editSushiForm.get('imageUrl')?.setValue(this.sushiById.imageUrl);
 
-          this.sushiById.ingredients.forEach((x: any): void => {
-            controls.push(this.patchIngredients(x.name, x.amount))
-          })
+          if (this.sushiById.ingredients.length === 0) {
+            this.ingredients.forEach((x: any): void => {
+              controls.push(this.patchIngredients(x.id, false, x.name, 0));
+            })
+          }
+
+          if (this.sushiById.ingredients.length !== 0) {
+            this.sushiById.ingredients.forEach((x: any): void => {
+              controls.push(this.patchIngredients(x.id, true, x.name, x.amount));
+            })
+            this.ingredients.forEach((x: any): void => {
+              if (!this.sushiById.ingredients.find((e: { id: number; }): boolean => e.id === x.id)) {
+                controls.push(this.patchIngredients(x.id, false, x.name, 0));
+              }
+            })
+          }
         },
         error: err => {
           console.error(err);
@@ -111,12 +117,12 @@ export class EditSushiComponent implements OnInit, OnDestroy {
       })
   }
 
-  submitEditSushi() {
+  submitEditSushi(): void {
     let resul: boolean = confirm("Update sushi?")
     if (resul) {
       this.putSushiSubscription = this.sushiService.putSushi(this.editSushiForm.value)
         .subscribe({
-          next: value => {
+          next: (): void => {
             alert('Updated! The page will reload!')
             window.location.reload();
           },
@@ -127,4 +133,16 @@ export class EditSushiComponent implements OnInit, OnDestroy {
         })
     }
   }
+
+  // get Ingredient(): FormArray {
+  //   return this.editSushiForm.get('ingredients') as FormArray;
+  // }
+  //
+  // addIngredient(): void {
+  //   this.Ingredient.push(this.patchIngredients(0, false, '', 0));
+  // }
+  //
+  // removeIngredient(i: number): void {
+  //   this.Ingredient.removeAt(i);
+  // }
 }

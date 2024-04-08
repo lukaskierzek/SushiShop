@@ -11,6 +11,10 @@ export class SushiService {
   constructor(private http: HttpClient) {
   }
 
+  getIngredients(): Observable<any> {
+    return this.http.get<any>("https://localhost:7103/Ingredient/ingredient");
+  }
+
   getSushi(): Observable<ISushi[]> {
     return this.http.get<ISushi[]>("https://localhost:7103/SushiShop/sushiAll");
   }
@@ -19,7 +23,7 @@ export class SushiService {
     return this.http.get<ISushi[]>(`https://localhost:7103/SushiShop/sushi?mainCategory=${mainCategory}`);
   }
 
-  getSushiById(id: string | null): Observable<ISushi[]> {
+  getSushiById(id: string | null | undefined): Observable<ISushi[]> {
     return this.http.get<ISushi[]>(`https://localhost:7103/SushiShop/sushi/${id}`);
   }
 
@@ -58,6 +62,7 @@ export class SushiService {
   }
 
   putSushi(s: any): Observable<void> {
+    s.ingredients = s.ingredients.filter((e: { isChecked: boolean; }) => { return e.isChecked });
     return this.http.put<void>(`https://localhost:7103/SushiShop/sushi/${s.id}`,
       {
         "id": s.id,
